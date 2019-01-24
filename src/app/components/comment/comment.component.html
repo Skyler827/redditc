@@ -1,0 +1,22 @@
+<div class="comment-div">
+  <p *ngIf="!visible" class="hidden">
+    <span class="show" (click)="show()">[+]</span>
+    <span class="username">{{comment.username}}</span>
+  </p>
+  <div *ngIf="visible" class="visible">
+    <p>
+      <span class="hide" *ngIf="visible" (click)="hide()">[-]</span>
+      <span class="username">{{comment.username}}</span>
+    </p>
+    <p class="comment">{{comment.body}}</p>
+    <button *ngIf="!showReplyForm" (click)="reply()">Reply</button>
+    <div *ngIf="showReplyForm">
+      Username: <input type="text" [formControl]="replyUsername">
+      <p>Reply text:</p>
+      <textarea [formControl]="replyText"></textarea>
+      <button (click)="submitReply()">Submit</button>
+      <a href="#" (click)="cancelReply()">cancel</a>
+    </div>
+    <app-comment *ngFor="let x of comment.replies" [comment]="x"></app-comment>
+  </div>
+</div>

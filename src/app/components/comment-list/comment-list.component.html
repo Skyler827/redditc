@@ -1,0 +1,11 @@
+<div class="comment-list">
+  <button *ngIf="!showReplyForm" (click)="addComment()">Add comment</button>
+  <div *ngIf="showReplyForm">
+    <p>Username: <input type="text" [formControl]="replyUsername"></p>
+    <p>Reply text:</p>
+    <textarea [formControl]="replyText"></textarea>
+    <button (click)="submitReply()">Save</button>
+    <a href="#" (click)="cancelReply()">Cancel</a>
+  </div>
+  <app-comment *ngFor="let x of comments" [comment]="x"></app-comment>
+</div>
